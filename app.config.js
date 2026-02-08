@@ -118,17 +118,24 @@ const CITY_APP_CONFIG = {
   },
 };
 
-// Get city from environment variable (default: kyoto)
-const cityId = process.env.CITY || 'kyoto';
+// Get city from environment variable or EAS build profile
+// Priority: CITY env var (set in eas.json) > EAS_BUILD_PROFILE > default 'kyoto'
+// Note: eas.json env.CITY is available during EAS builds, EAS_BUILD_PROFILE may not be set during config evaluation
+const cityId = process.env.CITY || process.env.EAS_BUILD_PROFILE || 'kyoto';
 const cityConfig = CITY_APP_CONFIG[cityId] || CITY_APP_CONFIG.kyoto;
 
+// Debug logging for EAS builds
 console.log(`📍 Building for: ${cityConfig.name} ${cityConfig.emoji}`);
+console.log(`🔍 CITY env var: ${process.env.CITY || '(not set)'}`);
+console.log(`🔍 EAS_BUILD_PROFILE: ${process.env.EAS_BUILD_PROFILE || '(not set)'}`);
+console.log(`🔍 Resolved cityId: ${cityId}`);
+console.log(`🔍 EAS Project ID: ${CITY_EAS_PROJECT_IDS[cityId] || '(not set)'}`);
 
 export default {
   expo: {
     name: cityConfig.name,
     slug: cityConfig.slug,
-    version: '1.0.0',
+    version: '1.0.1',
     orientation: 'portrait',
     icon: './assets/images/icon.png',
     scheme: cityConfig.scheme,
