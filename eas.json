@@ -25,11 +25,18 @@
       "env": {
         "CITY": "paris"
       }
+    },
+    "london": {
+      "extends": "production",
+      "env": {
+        "CITY": "london"
+      }
     }
   },
   "submit": {
     "production": {},
     "kyoto": {},
-    "paris": {}
+    "paris": {},
+    "london": {}
   }
 }

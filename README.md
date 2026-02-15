@@ -83,6 +83,7 @@ Each city has its own EAS build profile configured in `eas.json`. This allows ea
 **Current EAS Projects:**
 - **My Kyoto**: Project ID `be8cf4b8-2805-49b0-bf67-c791a8dfcf52` (already in review)
 - **My Paris**: Project ID `01360b68-1eb7-40be-b344-40a2e69a8522` (separate project)
+- **My London**: See [docs/LONDON_RELEASE.md](docs/LONDON_RELEASE.md) — run `CITY=london eas init` then set Project ID in `app.config.js`
 
 ### Build for a specific city
 
@@ -90,15 +91,18 @@ Each city has its own EAS build profile configured in `eas.json`. This allows ea
 # Build using EAS profiles (recommended)
 npm run build:kyoto   # Builds My Kyoto app
 npm run build:paris   # Builds My Paris app
+npm run build:london  # Builds My London app (set EAS project ID first; see docs/LONDON_RELEASE.md)
 
 # Or use EAS CLI directly
 eas build --profile kyoto -p ios
 eas build --profile paris -p ios
+eas build --profile london -p ios
 ```
 
 Each city builds as a separate app with unique bundle identifiers:
 - My Kyoto: `com.mycity.mykyoto`
 - My Paris: `com.mycity.myparis`
+- My London: `com.mycity.mylondon`
 
 ### App Store Connect / Google Play Console
 
@@ -110,12 +114,16 @@ Each city version is configured as a separate app:
 **To submit to App Store Connect:**
 ```bash
 eas submit --profile paris -p ios
+eas submit --profile london -p ios   # My London
 ```
 
 **To submit to Google Play Console:**
 ```bash
 eas submit --profile paris -p android
+eas submit --profile london -p android   # My London
 ```
+
+**London リリース**: 詳細は [docs/LONDON_RELEASE.md](docs/LONDON_RELEASE.md) を参照。
 
 ### Manual build with custom city (development only)
 
@@ -160,6 +168,10 @@ src/
 └── types/
     └── index.ts                # TypeScript types
 ```
+
+## Documentation
+
+- **[London リリース手順](docs/LONDON_RELEASE.md)** — My London のビルド・ストア申請手順、ストア用テキスト、チェックリスト
 
 ## Adding a New City
 
