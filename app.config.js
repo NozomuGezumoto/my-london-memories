@@ -6,7 +6,7 @@ export default {
   expo: {
     name: 'My London',
     slug: 'my-london',
-    version: '1.0.1',
+    version: '1.0.2',
     orientation: 'portrait',
     icon: './assets/images/icon.png',
     scheme: 'mylondon',
@@ -27,6 +27,10 @@ export default {
     ios: {
       supportsTablet: true,
       bundleIdentifier: 'com.mycity.mylondon',
+      infoPlist: {
+        NSLocationWhenInUseUsageDescription:
+          'My London Memories uses your location only when you add or edit a memory. For example, when you tap "Use Current Location", your position is used to place the memory pin on the map. Location data is stored only on this device and is not shared.',
+      },
     },
 
     android: {
@@ -48,6 +52,13 @@ export default {
     plugins: [
       'expo-font',
       '@react-native-community/datetimepicker',
+      [
+        'expo-location',
+        {
+          locationWhenInUsePermission:
+            'My London Memories uses your location only when you add or edit a memory. For example, when you tap "Use Current Location", your position is used to place the memory pin on the map. Location data is stored only on this device and is not shared.',
+        },
+      ],
       'expo-router',
       [
         'expo-splash-screen',
